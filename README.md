@@ -8,9 +8,9 @@ positions connues du véhicule pendant la location. Le résultat doit être le p
 
 ## Inputs
 Extract CSV des positions de la location :
-timestamp : integer, timestamp de la remontée de position
-latitude : float
-longitude : float
+- timestamp : integer (timestamp de la remontée de position)
+- latitude : float
+- longitude : float
 
 
 ## Retour attendu
