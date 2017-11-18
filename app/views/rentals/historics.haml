@@ -14,7 +14,7 @@
 					%td= rental.status
 					%td= (rental.begin_at) ? rental.begin_at : ''
 					%td= (rental.end_at) ? rental.end_at : ''
-					%td= (rental.distance / 1000.0).round(1) rescue nil
+					%td= (rental.distance / 1000.0).round(1) rescue "calculating..."
 					- if rental.status == 'incoming'
 						%td= link_to 'upload', edit_rental_path(rental.id), class: 'btn btn-default btn-xs'
 					- else 

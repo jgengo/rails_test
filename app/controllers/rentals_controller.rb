@@ -1,7 +1,7 @@
 class RentalsController < ApplicationController
   inherit_resources
   before_action :historic, only: [:index], if: -> { params[:done] }
-  before_action -> { handle_errors('You have to upload first a csv file') }, only: [:show], if: -> { resource.csv.blank? }
+  before_action -> { handle_errors('You have to upload first a CSV file') }, only: [:show], if: -> { resource.csv.blank? }
   before_action -> { handle_errors('You can\'t upload twice for the same travel.') }, only: [:edit], unless: -> { resource.csv.blank? }
 
   def update
@@ -19,12 +19,12 @@ class RentalsController < ApplicationController
     params.permit(rental: [:csv])
   end
 
-  private def handle_errors message
-    return redirect_back fallback_location: root_path, flash: { error: message }
+  private def handle_errors(message)
+    redirect_back fallback_location: root_path, flash: { error: message }
   end
 
   private def historic
-      @collection = collection.status_done
-      return render 'historics'
+    @collection = collection.status_done
+    render 'historics'
   end
 end

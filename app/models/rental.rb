@@ -1,6 +1,3 @@
-require 'google_maps_service'
-require 'csv'
-
 class Rental < ApplicationRecord
   mount_uploader :csv, CsvUploader
 
