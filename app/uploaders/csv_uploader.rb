@@ -2,23 +2,26 @@ require 'carrierwave'
 require 'csv'
 
 class CsvUploader < CarrierWave::Uploader::Base
-
   storage :file
 
-  after :store, :callback_method
-  def callback_method(file)
-  	csv_cleaned = []
-  	previous = ['', '0', '0']
-  	CSV.read(self.path, {col_sep: ";"}).each do |row|
-  		row = [row[0], row[1].to_f.truncate(4), row[2].to_f.truncate(4)]
-  		csv_cleaned << row unless row[1] == previous[1] and row[2] == previous[2]
-  		previous = row
-  	end
-  	CSV.open(self.path, 'w') do |csv|
-  		csv_cleaned.each { |c| csv << [c[0], c[1], c[2]] }
-  	end
+  after :store, :clean_duplicate_rows
+  def clean_duplicate_rows(_file)
+    csv_cleaned = []
+    previous = ['', '0', '0']
 
-  	self.model.update(status: 'done')
+    csv = CSV.read(path, col_sep: ';')
+    csv.each do |row|
+      row = [row[0], row[1].to_f.truncate(4), row[2].to_f.truncate(4)]
+      csv_cleaned << row unless row[1] == previous[1] && row[2] == previous[2]
+      previous = row
+    end
+
+    model.update(begin_at: Time.at(csv.first.first.to_i), end_at: Time.at(csv.last.first.to_i))
+    
+    CSV.open(path, 'w') do |row|
+      csv_cleaned.each { |c| row << [c[0], c[1], c[2]] }
+    end
+    model.update(status: 'done')
   end
 
   def store_dir
@@ -26,7 +29,6 @@ class CsvUploader < CarrierWave::Uploader::Base
   end
 
   def extension_whitelist
-    %w(csv)
+    %w[csv]
   end
-
 end

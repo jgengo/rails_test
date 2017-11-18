@@ -1,29 +1,30 @@
 class RentalsController < ApplicationController
   inherit_resources
-
-  def show
-    return redirect_back fallback_location: root_path, flash: { error: "You have to upload first a csv file" } if resource.csv.blank?
-    super
-  end
-
-  def edit
-    return redirect_back fallback_location: root_path, flash: { error: "You can't upload twice for the same travel."} unless resource.csv.blank?
-    super
-  end
+  before_action :historic, only: [:index], if: -> { params[:done] }
+  before_action -> { handle_errors('You have to upload first a csv file') }, only: [:show], if: -> { resource.csv.blank? }
+  before_action -> { handle_errors('You can\'t upload twice for the same travel.') }, only: [:edit], unless: -> { resource.csv.blank? }
 
   def update
     update! do |s, f|
-      f.html { return redirect_back fallback_location: root_path, flash: { error: "only csv file are allowed" } }
-      s.html { redirect_to rentals_path }
+      f.html { return redirect_back fallback_location: root_path, flash: { error: 'only csv file are allowed' } }
+      s.html { redirect_to rentals_path(done: true) }
     end
   end
 
-  protected
-  def collection
-    @rentals = Rental.all.order(status: :DESC).order(:id)
+  private def collection
+    @rentals = Rental.all.order(status: :DESC).order(:id).page(params[:page]).per(20)
   end
 
-  def rental_params
-    params.require(:rental).permit(:csv)
+  private def permitted_params
+    params.permit(rental: [:csv])
+  end
+
+  private def handle_errors message
+    return redirect_back fallback_location: root_path, flash: { error: message }
+  end
+
+  private def historic
+      @collection = collection.status_done
+      return render 'historics'
   end
 end

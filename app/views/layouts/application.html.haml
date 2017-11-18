@@ -18,7 +18,9 @@
       #navbarCollapse.collapse.navbar-collapse
         %ul.nav.navbar-nav
           %li
-            = link_to "Home", root_path
+            = link_to "Upload", root_path
+          %li
+            = link_to "Historics", root_path(done: true)
     
     .container
       = render partial: "shared/flash_messages", flash: flash

@@ -1,0 +1,24 @@
+- thead = ['ID', 'status', 'begin at', 'end at', 'distance', '']
+
+.container
+	%h1 HISTORICS
+	%hr
+	%table.table.table-striped
+		%thead
+			- thead.each do |head|
+				%th= head
+		%tbody
+			- @collection.each do |rental|
+				%tr
+					%td= rental.id
+					%td= rental.status
+					%td= (rental.begin_at) ? rental.begin_at : ''
+					%td= (rental.end_at) ? rental.end_at : ''
+					%td= rental.distance rescue nil
+					- if rental.status == 'incoming'
+						%td= link_to 'upload', edit_rental_path(rental.id), class: 'btn btn-default btn-xs'
+					- else 
+						%td= link_to 'details', rental_path(rental.id), class: 'btn btn-primary btn-xs'
+
+	.paginate
+		= paginate @collection

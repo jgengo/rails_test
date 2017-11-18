@@ -2,6 +2,6 @@ Rails.application.routes.draw do
 
   root 'rentals#index'
   
-  resources :rentals, except: [:destroy]
+  resources :rentals, except: [:new, :create, :destroy]
 
 end

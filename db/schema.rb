@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20171117202201) do
 
   create_table "rentals", force: :cascade do |t|
-    t.string "status"
+    t.integer "status"
     t.string "csv"
     t.float "distance"
     t.datetime "begin_at"
