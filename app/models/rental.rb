@@ -1,3 +1,6 @@
+require 'google_maps_service'
+require 'csv'
+
 class Rental < ApplicationRecord
   mount_uploader :csv, CsvUploader
 
@@ -5,10 +8,9 @@ class Rental < ApplicationRecord
   enum status: { incoming: 0, done: 1 }
 
   validates_presence_of :csv, on: [:update]
-  after_update :calculate_distance, if: -> { !csv.nil? && status == :done }
+  after_update :calculate_distance, if: -> { !csv.nil? && status.to_sym == :done }
 
   def calculate_distance
-    DistanceWorker.perform_async(self)
+    DistanceWorker.perform_async(id)
   end
-
 end

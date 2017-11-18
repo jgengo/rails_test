@@ -3,8 +3,16 @@ require 'csv'
 
 class CsvUploader < CarrierWave::Uploader::Base
   storage :file
-
   after :store, :clean_duplicate_rows
+
+  def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
+  def extension_whitelist
+    %w[csv]
+  end
+
   def clean_duplicate_rows(_file)
     csv_cleaned = []
     previous = ['', '0', '0']
@@ -22,13 +30,5 @@ class CsvUploader < CarrierWave::Uploader::Base
       csv_cleaned.each { |c| row << [c[0], c[1], c[2]] }
     end
     model.update(status: 'done')
-  end
-
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
-
-  def extension_whitelist
-    %w[csv]
   end
 end
