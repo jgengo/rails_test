@@ -1,0 +1,6 @@
+%h1 Upload your travel
+
+.container
+  = simple_form_for @rental do |f|
+    = f.file_field :csv, hint: 'csv file only'
+    = f.submit :send, style: 'margin-top: 15px'

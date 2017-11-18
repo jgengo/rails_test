@@ -1,7 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+rentals = Rental.create([
+	{ status: 'incoming', created_at: Time.zone.now - 6.days, updated_at: Time.zone.now - 6.days },
+	{ status: 'incoming', created_at: Time.zone.now - 5.days, updated_at: Time.zone.now - 5.days },
+	{ status: 'incoming', created_at: Time.zone.now - 4.days, updated_at: Time.zone.now - 4.days },
+	{ status: 'incoming', created_at: Time.zone.now - 1.days, updated_at: Time.zone.now - 1.days },
+	{ status: 'incoming', created_at: Time.zone.now - 3.hours, updated_at: Time.zone.now - 3.hours }
+])
+

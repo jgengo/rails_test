@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/lardawge/carrierwave_backgrounder.git
+  revision: 460394b0e2c0cf0c192be9c1a60bcf9dfb1f9e4d
+  specs:
+    carrierwave_backgrounder (0.4.2)
+      carrierwave (>= 0.5, < 2.0)
+      mime-types (~> 2.99)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -41,7 +49,18 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
+    autoprefixer-rails (7.1.6)
+      execjs
+    better_errors (2.4.0)
+      coderay (>= 1.0.0)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
     bindex (0.5.0)
+    binding_of_caller (0.7.3)
+      debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.1.0)
     capybara (2.16.0)
@@ -51,8 +70,13 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (1.2.1)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -61,17 +85,51 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
     crass (1.0.3)
+    debug_inspector (0.0.3)
     erubi (1.7.0)
+    erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    google_maps_service (0.4.2)
+      hurley (~> 0.1)
+      multi_json (~> 1.11)
+      retriable (~> 2.0)
+    haml (5.0.4)
+      temple (>= 0.8.0)
+      tilt
+    haml-rails (1.0.0)
+      actionpack (>= 4.0.1)
+      activesupport (>= 4.0.1)
+      haml (>= 4.0.6, < 6.0)
+      html2haml (>= 1.0.1)
+      railties (>= 4.0.1)
+    has_scope (0.7.1)
+      actionpack (>= 4.1, < 5.2)
+      activesupport (>= 4.1, < 5.2)
+    html2haml (2.2.0)
+      erubis (~> 2.7.0)
+      haml (>= 4.0, < 6)
+      nokogiri (>= 1.6.0)
+      ruby_parser (~> 3.5)
+    hurley (0.2)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
+    inherited_resources (1.7.2)
+      actionpack (>= 3.2, < 5.2.x)
+      has_scope (~> 0.6)
+      railties (>= 3.2, < 5.2.x)
+      responders
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    jquery-rails (4.3.1)
+      rails-dom-testing (>= 1, < 3)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -82,6 +140,7 @@ GEM
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     method_source (0.9.0)
+    mime-types (2.99.3)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.10.3)
@@ -92,6 +151,8 @@ GEM
     public_suffix (3.0.1)
     puma (3.10.0)
     rack (2.0.3)
+    rack-protection (2.0.0)
+      rack
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -121,7 +182,14 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redis (4.0.1)
+    responders (2.4.0)
+      actionpack (>= 4.2.0, < 5.3)
+      railties (>= 4.2.0, < 5.3)
+    retriable (2.1.0)
     ruby_dep (1.5.0)
+    ruby_parser (3.10.1)
+      sexp_processor (~> 4.9)
     rubyzip (1.2.1)
     sass (3.5.3)
       sass-listen (~> 4.0.0)
@@ -137,6 +205,15 @@ GEM
     selenium-webdriver (3.7.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    sexp_processor (4.10.0)
+    sidekiq (5.0.5)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.4, < 5)
+    simple_form (3.5.0)
+      actionpack (> 4, < 5.2)
+      activemodel (> 4, < 5.2)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -150,6 +227,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
+    temple (0.8.0)
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -175,15 +253,26 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
+  bootstrap-sass (~> 3.3.7)
   byebug
   capybara (~> 2.13)
+  carrierwave (~> 1.0)
+  carrierwave_backgrounder!
   coffee-rails (~> 4.2)
+  google_maps_service
+  haml-rails (~> 1.0)
+  inherited_resources
   jbuilder (~> 2.5)
+  jquery-rails
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)
   rails (~> 5.1.4)
   sass-rails (~> 5.0)
   selenium-webdriver
+  sidekiq
+  simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
