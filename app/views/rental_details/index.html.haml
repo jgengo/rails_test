@@ -1,0 +1,16 @@
+- thead = ['time', 'origin', 'destination', 'distance']
+
+.container
+	%h1 DETAILS
+	%hr
+	%table.table.table-striped
+		%thead
+			- thead.each do |head|
+				%th= head
+		%tbody
+			- collection.each do |rd|
+				%tr
+					%td= rd.saved_at
+					%td= "#{rd.origin_lat} ; #{rd.origin_long}"
+					%td= "#{rd.dest_lat} ; #{rd.dest_long}"
+					%td= rd.distance

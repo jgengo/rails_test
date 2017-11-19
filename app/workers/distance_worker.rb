@@ -15,8 +15,10 @@ class DistanceWorker
       else
         destinations = [row.second, row.third]
         matrix = gmaps.distance_matrix([origins], [destinations], mode: 'driving', language: 'fr-FR', units: 'metric')
+        distance = matrix[:rows].first[:elements].first[:distance][:value]
+        km += distance
+        RentalDetail.add_an_entry(rental_id, origins, destinations, distance, row.first.to_i)
         origins = destinations
-        km += matrix[:rows].first[:elements].first[:distance][:value]
       end
     end
     rental.update(distance: km)

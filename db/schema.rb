@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117202201) do
+ActiveRecord::Schema.define(version: 20171119083919) do
+
+  create_table "rental_details", force: :cascade do |t|
+    t.integer "rental_id"
+    t.float "origin_long"
+    t.float "origin_lat"
+    t.float "dest_long"
+    t.float "dest_lat"
+    t.float "distance"
+    t.datetime "saved_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "rentals", force: :cascade do |t|
     t.integer "status"

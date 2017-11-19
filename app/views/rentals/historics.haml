@@ -18,7 +18,16 @@
 					- if rental.status == 'incoming'
 						%td= link_to 'upload', edit_rental_path(rental.id), class: 'btn btn-default btn-xs'
 					- else 
-						%td= link_to 'details', rental_path(rental.id), class: 'btn btn-primary btn-xs'
+						%td
+							= link_to rental_rental_details_path(rental.id), class: 'btn btn-primary btn-xs ml-10' do
+								%span.glyphicon.glyphicon-list-alt
+								details
+							
+							= link_to rental.csv.url, class: 'btn btn-success btn-xs ml-10' do
+								%span.glyphicon.glyphicon-download-alt
+								CSV
+
+
 
 	.paginate
 		= paginate @collection
