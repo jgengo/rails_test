@@ -22,6 +22,6 @@ class DistanceWorker
       end
     end
     rental.update(distance: km)
-    ActionCable.server.broadcast 'notif_channel', {}
+    ActionCable.server.broadcast 'notif_channel', {id: rental_id, distance: km}
   end
 end

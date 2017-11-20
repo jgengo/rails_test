@@ -1,11 +1,11 @@
 class Rental < ApplicationRecord
   #==== relations
-  has_many :rental_details
+  has_many :rental_details, dependent: :destroy
   #====
 
   #==== callbacks
   validates_presence_of :csv, on: [:update]
-  after_update :calc_distance, if: -> { !csv.nil? && status_changed? && status.to_sym == :done }
+  after_update :calc_distance, if: -> { csv.present? && status_changed? && status.to_sym == :done }
   #====
 
   mount_uploader :csv, CsvUploader

@@ -14,7 +14,7 @@
 					%td= rental.status
 					%td= rental.begin_at.strftime("%B %d, %Y %H:%m") rescue nil
 					%td= rental.end_at.strftime("%B %d, %Y %H:%m") rescue nil
-					%td= (rental.distance.nil?) ? 'calculating...' : (rental.distance / 1000.0).round(1)
+					%td{id: rental.id}= (rental.distance.nil?) ? 'calculating...' : (rental.distance / 1000.0).round(1)
 					%td
 						= link_to rental_rental_details_path(rental.id), class: 'btn btn-primary btn-xs ml-10' do
 							%span.glyphicon.glyphicon-list-alt

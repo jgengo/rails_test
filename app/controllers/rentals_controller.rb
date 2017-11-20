@@ -12,7 +12,7 @@ class RentalsController < ApplicationController
   end
 
   private def collection
-    @rentals = Rental.all.page(params[:page]).per(20)
+    Rental.all.page(params[:page]).per(20)
   end
 
   private def permitted_params

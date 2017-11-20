@@ -4,7 +4,6 @@ App.notif = App.cable.subscriptions.create("NotifChannel", {
   disconnected: function() { },
 
   received: function(data) {
-    alert(data);
-    location.reload();
+  	$('#'+data.id).text( (data.distance / 1000).toFixed(1) )
   }
 });

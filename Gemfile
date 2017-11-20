@@ -7,6 +7,7 @@ end
 
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'
+gem 'redis', '~> 3.0'
 gem 'sqlite3'
 
 gem 'haml-rails', '~> 1.0'
