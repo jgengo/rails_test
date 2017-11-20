@@ -1,4 +1,4 @@
-- thead = ['ID', 'status', 'begin at', 'end at', 'distance', '']
+- thead = ['ID', 'status', 'begin at (UTC)', 'end at (UTC)', 'distance (km)', '']
 
 .container
 	%h1 HISTORICS
@@ -12,22 +12,16 @@
 				%tr
 					%td= rental.id
 					%td= rental.status
-					%td= (rental.begin_at) ? rental.begin_at : ''
-					%td= (rental.end_at) ? rental.end_at : ''
-					%td= (rental.distance / 1000.0).round(1) rescue "calculating..."
-					- if rental.status == 'incoming'
-						%td= link_to 'upload', edit_rental_path(rental.id), class: 'btn btn-default btn-xs'
-					- else 
-						%td
-							= link_to rental_rental_details_path(rental.id), class: 'btn btn-primary btn-xs ml-10' do
-								%span.glyphicon.glyphicon-list-alt
-								details
-							
-							= link_to rental.csv.url, class: 'btn btn-success btn-xs ml-10' do
-								%span.glyphicon.glyphicon-download-alt
-								CSV
-
-
-
+					%td= rental.begin_at.strftime("%B %d, %Y %H:%m") rescue nil
+					%td= rental.end_at.strftime("%B %d, %Y %H:%m") rescue nil
+					%td= (rental.distance.nil?) ? 'calculating...' : (rental.distance / 1000.0).round(1)
+					%td
+						= link_to rental_rental_details_path(rental.id), class: 'btn btn-primary btn-xs ml-10' do
+							%span.glyphicon.glyphicon-list-alt
+							details
+						
+						= link_to rental.csv.url, class: 'btn btn-success btn-xs ml-10' do
+							%span.glyphicon.glyphicon-download-alt
+							CSV
 	.paginate
 		= paginate @collection

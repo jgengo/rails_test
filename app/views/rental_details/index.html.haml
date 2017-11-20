@@ -1,4 +1,4 @@
-- thead = ['time', 'origin', 'destination', 'distance']
+- thead = ['time', 'origin', 'destination', 'distance (m)']
 
 .container
 	%h1 DETAILS
@@ -10,7 +10,7 @@
 		%tbody
 			- collection.each do |rd|
 				%tr
-					%td= rd.saved_at
+					%td= rd.saved_at.strftime("%B %d, %Y %H:%m") rescue 'N/A'
 					%td= "#{rd.origin_lat} ; #{rd.origin_long}"
 					%td= "#{rd.dest_lat} ; #{rd.dest_long}"
-					%td= rd.distance
+					%td= rd.distance.to_i

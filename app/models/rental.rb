@@ -13,7 +13,6 @@ class Rental < ApplicationRecord
   scope :status_done, -> { where(status: :done) }
   enum status: { incoming: 0, done: 1 }
 
-
   private def calc_distance
     DistanceWorker.perform_async(id)
   end
