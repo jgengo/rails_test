@@ -4,6 +4,9 @@ ruby 2.4.2p198
 ```
 
 ```
+bundle install
+gem install sidekiq
+bundle exec sidekiq
 rails db:create
 rails db:migrate
 rails db:seed
@@ -13,6 +16,8 @@ rails s
 
 J'ai utilisé SQLite pour faciliter l'usage / l'init du projet pour l'entreprise qui m'a donné ce test technique.
 J'ai egalement utilisé inherited_ressources pour reduire l'ecriture des methodes du CRUD.
+
+Sidekiq pour le background processing.
 
 # Test technique Rails
 
