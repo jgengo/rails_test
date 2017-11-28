@@ -1,6 +1,20 @@
+```
+Rails 5.1.4
+ruby 2.4.2p198
+```
+
+```
+rails db:create
+rails db:migrate
+rails db:seed
+
+rails s
+```
+
+J'ai utilisé SQLite pour faciliter l'usage / l'init du projet pour l'entreprise qui m'a donné ce test technique.
+J'ai egalement utilisé inherited_ressources pour reduire l'ecriture des methodes du CRUD.
+
 # Test technique Rails
-
-
 
 ## Sujet
 Calculer via une API (eg GoogleMap) le kilométrage d'une location, en se basant sur les
